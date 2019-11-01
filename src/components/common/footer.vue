@@ -1,7 +1,7 @@
 <template>
   <div class="footer">
     <div
-      :class="['footer-tab', 'border-top', {active: footer.footerTab === index}]"
+      :class="['footer-tab', 'border-top', {active: footer.footerTab == index}]"
       v-for="(item, index) in footer.footerTabs"
       @click="change_footer_tab(index)"
       :key="index"

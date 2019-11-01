@@ -7,7 +7,7 @@
     </div>
     <ul class="tabs">
       <li
-        :class="['tab', {active: header.headerTab === index}]"
+        :class="['tab', {active: header.headerTab == index}]"
         v-for="(item, index) in header.headerTabs" :key="item"
         @click="change_header_tab(index)">{{item}}</li>
     </ul>
