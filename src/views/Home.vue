@@ -1,23 +1,23 @@
 <template>
   <div class="home">
     <Header />
-    <List />
+    <Hot />
     <Footer />
   </div>
 </template>
 
 <script>
-import Header from '@/components/common/header.vue';
-import Footer from '@/components/common/footer.vue';
-import List from '@/components/home/list.vue';
+import Header from '../components/common/header'
+import Footer from '../components/common/footer'
+import Hot from '../components/home/hot'
+// import Nearly from '../components/home/nearly'
 
 export default {
-  name: 'Home',
+  name: 'home',
   components: {
     Header,
-    List,
-    Footer,
-  },
-};
-
+    Hot,
+    Footer
+  }
+}
 </script>

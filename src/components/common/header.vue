@@ -17,18 +17,18 @@
 <script>
 export default {
   name: 'Header',
-  data() {
+  data () {
     return {
       nowTab: 0,
-      tabs: ['正在热映', '即将上映'],
-    };
+      tabs: ['正在热映', '即将上映']
+    }
   },
   methods: {
-    changeTab(index) {
-      this.nowTab = index;
-    },
-  },
-};
+    changeTab (index) {
+      this.nowTab = index
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
