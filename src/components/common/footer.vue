@@ -13,20 +13,20 @@
 </template>
 
 <script>
-  export default {
-    name: 'Footer',
-    data () {
-      return {
-        nowTab: 0,
-        tabs: [{title:'热映', icon: '&#xe65b;'}, {title:'院线', icon: '&#xe8c0;'}, {title:'我的', icon: '&#xe616;'}]
-      }
+export default {
+  name: 'Footer',
+  data() {
+    return {
+      nowTab: 0,
+      tabs: [{ title: '热映', icon: '&#xe65b;' }, { title: '院线', icon: '&#xe8c0;' }, { title: '我的', icon: '&#xe616;' }],
+    };
+  },
+  methods: {
+    changeTab(index) {
+      this.nowTab = index;
     },
-    methods: {
-      changeTab(index) {
-        this.nowTab = index;
-      }
-    }
-  }
+  },
+};
 </script>
 
 <style lang="scss">

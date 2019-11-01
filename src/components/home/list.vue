@@ -21,40 +21,41 @@
 </template>
 
 <script>
-import BScroll from 'better-scroll'
+import BScroll from 'better-scroll';
 
 export default {
   name: 'List',
   methods: {
     initScroll() {
       this.scroll = new BScroll(this.$refs.list, {
-        click:true,
-        pullUpLoad: {             
-          threshold: 50
+        click: true,
+        pullUpLoad: {
+          threshold: 50,
         },
-        pullDownRefresh:{
-          threshold:50,
-          stop:20
-        }
-      })
+        pullDownRefresh: {
+          threshold: 50,
+          stop: 20,
+        },
+      });
 
-      this.scroll.on('pullingUp',()=>{
+      this.scroll.on('pullingUp', () => {
         this.getData();
         this.scroll.finishPullUp();
-      })
-      this.scroll.on('pullingDown',()=>{
+      });
+
+      this.scroll.on('pullingDown', () => {
         this.getData();
         this.scroll.finishPullDown();
-      })
+      });
     },
     getData() {
-      console.log('加载数据。。。')
+      console.log('加载数据。。。');
     },
   },
   mounted() {
-    this.$nextTick(this.initScroll)
-  }
-}
+    this.$nextTick(this.initScroll);
+  },
+};
 </script>
 
 <style lang="scss">

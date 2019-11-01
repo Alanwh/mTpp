@@ -6,8 +6,8 @@
       <span class="iconfont">&#xe615;</span>
     </div>
     <ul class="tabs">
-      <li 
-        :class="['tab', {active: nowTab === index}]" 
+      <li
+        :class="['tab', {active: nowTab === index}]"
         v-for="(item, index) in tabs" :key="item"
         @click="changeTab(index)">{{item}}</li>
     </ul>
@@ -17,18 +17,18 @@
 <script>
 export default {
   name: 'Header',
-  data () {
+  data() {
     return {
       nowTab: 0,
-      tabs: ['正在热映', '即将上映']
-    }
+      tabs: ['正在热映', '即将上映'],
+    };
   },
   methods: {
     changeTab(index) {
-      this.nowTab = index
-    }
-  }
-}
+      this.nowTab = index;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
