@@ -14,16 +14,19 @@
   </div>
 </template>
 
-<script lang='ts'>
-import { Vue, Component } from 'vue-property-decorator';
-@Component
-
-export default class Header extends Vue {
-  private nowTab: Number = 0;
-  private tabs: String[] = ['正在热映', '即将上映'];
-  
-  private changeTab(index: Number) {
-    this.nowTab = index
+<script>
+export default {
+  name: 'Header',
+  data () {
+    return {
+      nowTab: 0,
+      tabs: ['正在热映', '即将上映']
+    }
+  },
+  methods: {
+    changeTab(index) {
+      this.nowTab = index
+    }
   }
 }
 </script>

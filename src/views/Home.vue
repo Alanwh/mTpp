@@ -6,22 +6,17 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
-import Header from '../components/common/header.vue';
-import Footer from '../components/common/footer.vue';
-import List from '../components/home/list.vue';
-
-@Component({
+<script>
+import Header from '../components/common/header';
+import Footer from '../components/common/footer';
+import List from '../components/home/list';
+export default {
+  name: 'Home',
   components: {
     Header,
-    Footer,
-    List
-  },
-})
-
-export default class Home extends Vue {
-  private msg: String = 'this is a good beginning!';
-}
+    List,
+    Footer
+  }
+};
 
 </script>

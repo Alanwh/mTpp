@@ -12,15 +12,19 @@
   </div>
 </template>
 
-<script lang="ts">
-  import { Vue, Component} from 'vue-property-decorator';
-  @Component
-
-  export default class Footer extends Vue {
-    private nowTab: Number = 0;
-    private tabs: Object[] = [{title:'热映', icon: '&#xe65b;'}, {title:'院线', icon: '&#xe8c0;'}, {title:'我的', icon: '&#xe616;'}]
-    private changeTab(index: Number) :void{
-      this.nowTab = index;
+<script>
+  export default {
+    name: 'Footer',
+    data () {
+      return {
+        nowTab: 0,
+        tabs: [{title:'热映', icon: '&#xe65b;'}, {title:'院线', icon: '&#xe8c0;'}, {title:'我的', icon: '&#xe616;'}]
+      }
+    },
+    methods: {
+      changeTab(index) {
+        this.nowTab = index;
+      }
     }
   }
 </script>

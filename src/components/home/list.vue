@@ -20,45 +20,40 @@
   </div>
 </template>
 
-<script lang='ts'>
+<script>
 import BScroll from 'better-scroll'
 
-import { Vue, Component } from 'vue-property-decorator';
-@Component
+export default {
+  name: 'List',
+  methods: {
+    initScroll() {
+      this.scroll = new BScroll(this.$refs.list, {
+        click:true,
+        pullUpLoad: {             
+          threshold: 50
+        },
+        pullDownRefresh:{
+          threshold:50,
+          stop:20
+        }
+      })
 
-export default class List extends Vue{
-  private scroll: any
-  private initScroll() {
-   this.scroll = new BScroll(this.$refs.list, {
-      click:true,
-      pullUpLoad: {             
-        threshold: 50
-      },
-      pullDownRefresh:{
-        threshold:50,
-        stop:20
-      }
-    })
-
-    this.scroll.on('pullingUp',()=>{
-      this.getData();
-      this.scroll.finishPullUp();
-    })
-    this.scroll.on('pullingDown',()=>{
-      this.getData();
-      this.scroll.finishPullDown();
-    })
-  }
-
-  getData() {
-    console.log('加载数据。。。')
-  }
-
+      this.scroll.on('pullingUp',()=>{
+        this.getData();
+        this.scroll.finishPullUp();
+      })
+      this.scroll.on('pullingDown',()=>{
+        this.getData();
+        this.scroll.finishPullDown();
+      })
+    },
+    getData() {
+      console.log('加载数据。。。')
+    },
+  },
   mounted() {
     this.$nextTick(this.initScroll)
   }
-
-
 }
 </script>
 
