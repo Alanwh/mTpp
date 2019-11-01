@@ -7,26 +7,23 @@
     </div>
     <ul class="tabs">
       <li
-        :class="['tab', {active: nowTab === index}]"
-        v-for="(item, index) in tabs" :key="item"
-        @click="changeTab(index)">{{item}}</li>
+        :class="['tab', {active: header.headerTab === index}]"
+        v-for="(item, index) in header.headerTabs" :key="item"
+        @click="change_header_tab(index)">{{item}}</li>
     </ul>
   </div>
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
+
 export default {
   name: 'Header',
-  data () {
-    return {
-      nowTab: 0,
-      tabs: ['正在热映', '即将上映']
-    }
-  },
   methods: {
-    changeTab (index) {
-      this.nowTab = index
-    }
+    ...mapMutations(['change_header_tab'])
+  },
+  computed: {
+    ...mapState(['header'])
   }
 }
 </script>

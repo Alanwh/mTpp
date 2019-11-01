@@ -1,9 +1,9 @@
 <template>
   <div class="footer">
     <div
-      :class="['footer-tab', 'border-top', {active: nowTab === index}]"
-      v-for="(item, index) of tabs"
-      @click="changeTab(index)"
+      :class="['footer-tab', 'border-top', {active: footer.footerTab === index}]"
+      v-for="(item, index) in footer.footerTabs"
+      @click="change_footer_tab(index)"
       :key="index"
     >
       <span class="iconfont" v-html="item.icon"></span>
@@ -13,18 +13,14 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
 export default {
   name: 'Footer',
-  data () {
-    return {
-      nowTab: 0,
-      tabs: [ { title: '热映', icon: '&#xe65b;' }, { title: '院线', icon: '&#xe8c0;' }, { title: '我的', icon: '&#xe616;' } ]
-    }
+  computed: {
+    ...mapState(['footer'])
   },
   methods: {
-    changeTab (index) {
-      this.nowTab = index
-    }
+    ...mapMutations(['change_footer_tab'])
   }
 }
 </script>
