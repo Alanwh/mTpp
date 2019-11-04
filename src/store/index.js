@@ -34,7 +34,10 @@ export default new Vuex.Store({
       footerTab: defaultFooterTab,
       footerTabs: [ { title: '热映', icon: '&#xe65b;' }, { title: '院线', icon: '&#xe8c0;' }, { title: '我的', icon: '&#xe616;' } ]
     },
-    nowCity: defaultCity
+    city: {
+      nowCity: defaultCity,
+      scroll: false
+    }
   },
   mutations: {
     'change_header_tab' ({ header }, payload) {
@@ -49,10 +52,8 @@ export default new Vuex.Store({
         localStorage.footerTab = payload
       } catch {}
     },
-    'change_city' (state, payload) {
-      console.log('change_city======', payload)
-      state.nowCity = payload
-      console.log(state)
+    'change_city' ({ city }, payload) {
+      city.nowCity = payload
       try {
         localStorage.city = payload
       } catch {}

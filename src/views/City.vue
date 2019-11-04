@@ -1,10 +1,10 @@
 <template>
   <div v-show="city.cities && city.hotCities">
     <CityHeader />
-    <Scroll :styleObj="style">
-      <CityList :city="city"/>
+    <Scroll :styleObj="style" @scroll="scroll">
+      <CityList :cityData="city"/>
     </Scroll>
-    <Alphabet :city="city" />
+    <Alphabet :cityData="city" />
   </div>
 </template>
 
@@ -37,6 +37,9 @@ export default {
       if (data.ret) {
         this.city = { ...data.data }
       }
+    },
+    scroll (value) {
+      console.log('scroll~~~~~~~', value)
     }
   },
   mounted () {

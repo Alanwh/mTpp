@@ -3,7 +3,7 @@
     <div class="current">
       <div class="city-title">当前城市</div>
       <ul class="city-list">
-        <li tag="li" @click="handleClick">{{nowCity}}</li>
+        <li tag="li" @click="handleClick">{{city.nowCity}}</li>
       </ul>
     </div>
     <div class="location">
@@ -16,7 +16,7 @@
       <div class="city-title">热门城市</div>
       <ul class="city-list">
         <li
-          v-for="item of city.hotCities"
+          v-for="item of cityData.hotCities"
           :key="item.id"
           tag="li"
           class="border-top"
@@ -24,7 +24,7 @@
       </ul>
     </div>
     <div class="all">
-      <div class="alphabeta" v-for="(value, key) in city.cities" :key="key">
+      <div class="alphabeta" v-for="(value, key) in cityData.cities" :key="key">
         <div class="city-title" ref="key">{{key}}</div>
         <ul class="city-list">
           <li
@@ -44,13 +44,13 @@ import { mapState, mapMutations } from 'vuex'
 export default {
   name: 'CityList',
   props: {
-    city: {
+    cityData: {
       type: Object,
       default: () => {}
     }
   },
   computed: {
-    ...mapState(['nowCity'])
+    ...mapState(['city'])
   },
   methods: {
     handleClick (e) {

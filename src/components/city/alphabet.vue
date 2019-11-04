@@ -1,9 +1,9 @@
 <template>
-  <div class="alphabet" v-show="city.cities">
+  <div class="alphabet" v-show="cityData.cities">
     <span>当前</span>
     <span>GPS</span>
     <span>热门</span>
-    <span v-for="(value, key) in city.cities" :key="key" @click="handleClickAlphabet">{{key}}</span>
+    <span v-for="(value, key) in cityData.cities" :key="key" @click="handleClickAlphabet">{{key}}</span>
   </div>
 </template>
 
@@ -11,7 +11,7 @@
 export default {
   name: 'Alphabet',
   props: {
-    city: {
+    cityData: {
       type: Object,
       default: () => {}
     }
@@ -19,7 +19,6 @@ export default {
   methods: {
     handleClickAlphabet (e) {
       console.log(e.target.innerText)
-      console.log(this.scroll)
     }
   }
 }
