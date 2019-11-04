@@ -1,6 +1,6 @@
 <template>
   <Scroll>
-    <List />
+    <List :list="list"/>
   </Scroll>
 </template>
 
@@ -13,6 +13,12 @@ export default {
   components: {
     List,
     Scroll
+  },
+  props: {
+    list: {
+      type: Array,
+      default: () => []
+    }
   }
 }
 </script>

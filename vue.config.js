@@ -14,18 +14,18 @@ module.exports = {
         config.output.filename('[name].[hash].js').end(); 
     },
     devServer: {
-        // open: true, 
-        host: '10.93.147.21'
-        // proxy: {
-        //     '/api': {
-        //         target: 'http://127.0.0.1:8080',
-        //         ws: true,
-        //         changeOrigin: true,
-        //         pathRewrite: {
-        //             '^/api': '/mock'
-        //         }
-        //     },
-        // },
+        open: true, 
+        host: '10.93.147.21',
+        proxy: {
+            [process.env.VUE_APP_BASE_API]: {
+                target: 'http://www.jycinema.com/frontUIWebapp/appserver',
+                ws: true,
+                changeOrigin: true,
+                pathRewrite: {
+                    ['^' + process.env.VUE_APP_BASE_API]: ''
+                }
+            },
+        },
         // before(app) {
         //     app.use('/api', apiRoutes)
         // }

@@ -1,14 +1,14 @@
 <template>
   <div>
-    <div class="list-item border-bottom" v-for="item in 10" :key="item">
+    <div class="list-item border-bottom" v-for="item in list" :key="item.filmId">
       <div class="img">
-        <img src="https://gw.alicdn.com/i2/TB1VyjPjYY1gK0jSZTEXXXDQVXa_.jpg_160x160Q30s100.jpg_.webp" alt="movie pic">
+        <img :src="item.posterUrl" alt="movie pic">
       </div>
       <div class="info">
-        <div class="name">少年的你</div>
-        <div class="score">淘票票评分: <span class="grade">9.4</span></div>
-        <div class="director">导演：曾国祥</div>
-        <div class="actor">主演：周冬雨 易烊千玺 尹昉</div>
+        <div class="name">{{item.titlealt}}</div>
+        <div class="score">评分: <span class="grade">{{item.complexScore}}</span></div>
+        <div class="director">类型：{{item.filmType}}</div>
+        <div class="desc">{{item.ratingDescriptionAlt | filterName}}</div>
       </div>
       <div class="btn-wrapper">
         <div class="buy">购票</div>
@@ -20,7 +20,19 @@
 
 <script>
 export default {
-  name: 'List'
+  name: 'List',
+  props: {
+    list: {
+      type: Array,
+      default: () => []
+    }
+  },
+  filters: {
+    filterName: function (value) {
+      if (!value) return ''
+      return value.replace(/.*《.*》\s*[：:]/ig, '')
+    }
+  }
 }
 </script>
 

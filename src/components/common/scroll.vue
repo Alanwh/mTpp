@@ -14,9 +14,7 @@ export default {
   props: {
     styleObj: {
       type: Object,
-      default () {
-        return {}
-      }
+      default: () => {}
     }
   },
   methods: {
@@ -42,9 +40,7 @@ export default {
         this.scroll.finishPullDown()
       })
     },
-    getData () {
-      console.log('加载数据。。。')
-    }
+    getData () {}
   },
   mounted () {
     this.$nextTick(this.initScroll)
