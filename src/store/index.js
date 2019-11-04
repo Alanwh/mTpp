@@ -6,14 +6,14 @@ Vue.use(Vuex)
 let defaultHeaderTab = 0
 try {
   if (localStorage.headerTab) {
-    defaultHeaderTab = localStorage.headerTab
+    defaultHeaderTab = parseInt(localStorage.headerTab)
   }
 } catch {}
 
 let defaultFooterTab = 0
 try {
   if (localStorage.footerTab) {
-    defaultFooterTab = localStorage.footerTab
+    defaultFooterTab = parseInt(localStorage.footerTab)
   }
 } catch {}
 

@@ -2,7 +2,7 @@
   <Scroll>
     <div>
       <div class="title"><span>2019-11-02</span><span class="week">明天</span></div>
-      <List />
+      <List :list="list"/>
     </div>
   </Scroll>
 </template>
@@ -13,6 +13,12 @@ import List from './list'
 
 export default {
   name: 'Nearly',
+  props: {
+    list: {
+      type: Array,
+      default: () => []
+    }
+  },
   components: {
     List,
     Scroll

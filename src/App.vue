@@ -7,6 +7,7 @@
 <style lang="scss">
 @import '~@/assets/style/normalise.scss';
 @import '~@/assets/style/iconfont.css';
+@import '~@/assets/style/mixin.scss';
 @import '~@/assets/style/1px.scss';
 html{
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

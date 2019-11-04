@@ -5,9 +5,10 @@
         <img :src="item.posterUrl" alt="movie pic">
       </div>
       <div class="info">
-        <div class="name">{{item.titlealt}}</div>
-        <div class="score">评分: <span class="grade">{{item.complexScore}}</span></div>
+        <div class="name">{{item.titlealt||item.titleAlt}}</div>
+        <div class="score">评分: <span class="grade" v-html="item.complexScore === 0 ?  '<span>暂无</span>': item.complexScore" /></div>
         <div class="director">类型：{{item.filmType}}</div>
+        <div class="time">上映时间：{{item.showTime | formatDate}}</div>
         <div class="desc">{{item.ratingDescriptionAlt | filterName}}</div>
       </div>
       <div class="btn-wrapper">
@@ -31,21 +32,23 @@ export default {
     filterName: function (value) {
       if (!value) return ''
       return value.replace(/.*《.*》\s*[：:]/ig, '')
-    }
+    },
+    formatDate: (stamps) => new Date(stamps).toLocaleDateString()
   }
 }
 </script>
 
 <style lang="scss">
   @import '~@/assets/style/variable.scss';
+  @import '~@/assets/style/mixin.scss';
   .list-item{
     display: flex;
     align-items: center;
     padding: .1rem 0 .1rem .1rem;
     box-sizing: border-box;
     .img{
-      width: .8rem;
-      height: 1.12rem;
+      width: .9rem;
+      height: 1.197rem;
       img{
         width: 100%;
       }
@@ -55,6 +58,7 @@ export default {
       padding-left: .1rem;
       line-height: 1.8em;
       color: #666;
+      min-width: 0;
       .name{
         font-weight: bold;
         font-size: .18rem;
@@ -64,6 +68,13 @@ export default {
         color: #ff9c1c;
         font-weight: bold;
         font-size: .18rem;
+        span{
+          font-weight: normal;
+          font-size: .14rem;
+        }
+      }
+      .desc{
+        @include ellipsis;
       }
     }
     .btn-wrapper{

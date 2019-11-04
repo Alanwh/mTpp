@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <Header />
-    <Hot v-show="header.headerTab == 0" :list="list"/>
-    <Nearly v-show="header.headerTab == 1" />
+    <Hot v-show="header.headerTab == 0" :list="hotList"/>
+    <Nearly v-show="header.headerTab == 1" :list="nearlyList" />
     <Footer />
   </div>
 </template>
@@ -25,29 +25,58 @@ export default {
   },
   data () {
     return {
-      list: []
+      hotList: [],
+      nearlyList: []
     }
   },
   computed: {
     ...mapState(['header'])
   },
   methods: {
-    getData () {
+    initHot () {
       let params = { 'status': 'HOT', 'type': 'queryFilm', 'cityName': '上海市', 'DBType': 'mongoDB', 'channelId': 7, 'channelCode': 'J0005', 'memberId': '' }
       this.$http({
         method: 'POST',
         url: '/cinCinemaFilmViewService/findFilm',
         data: qs.stringify({ params: JSON.stringify(params) })
-      }).then(this.handleData)
+      }).then(this.handleHotData)
     },
-    handleData (data) {
+    handleHotData (data) {
       if (data.status === 'S' && data.data) {
-        this.list = data.data
+        this.hotList = data.data
+      }
+    },
+    initNearly () {
+      let params = { 'status': 'RELEASE', 'type': 'ordinary', 'channelId': 7, 'channelCode': 'J0005', 'memberId': '' }
+      this.$http({
+        method: 'POST',
+        url: '/commonFilmService/findFilms',
+        data: qs.stringify({ params: JSON.stringify(params) })
+      }).then(this.handleNearlyData)
+    },
+    handleNearlyData (data) {
+      if (data.status === 'S' && data.data) {
+        this.nearlyList = data.data
+      }
+    },
+    initPage () {
+      if (this.header.headerTab === 0) {
+        this.hotList.length || this.initHot(this.handleHotData)
+      } else {
+        this.nearlyList.length || this.initNearly(this.handleNearlyData)
       }
     }
   },
+  watch: {
+    header: {
+      handler (val) {
+        this.initPage()
+      },
+      deep: true
+    }
+  },
   mounted () {
-    this.getData(this.handleData)
+    this.initPage()
   }
 
 }
