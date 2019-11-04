@@ -17,6 +17,13 @@ try {
   }
 } catch {}
 
+let defaultCity = '北京'
+try {
+  if (localStorage.city) {
+    defaultCity = localStorage.city
+  }
+} catch {}
+
 export default new Vuex.Store({
   state: {
     header: {
@@ -26,7 +33,8 @@ export default new Vuex.Store({
     footer: {
       footerTab: defaultFooterTab,
       footerTabs: [ { title: '热映', icon: '&#xe65b;' }, { title: '院线', icon: '&#xe8c0;' }, { title: '我的', icon: '&#xe616;' } ]
-    }
+    },
+    nowCity: defaultCity
   },
   mutations: {
     'change_header_tab' ({ header }, payload) {
@@ -39,6 +47,14 @@ export default new Vuex.Store({
       footer.footerTab = payload
       try {
         localStorage.footerTab = payload
+      } catch {}
+    },
+    'change_city' (state, payload) {
+      console.log('change_city======', payload)
+      state.nowCity = payload
+      console.log(state)
+      try {
+        localStorage.city = payload
       } catch {}
     }
   },

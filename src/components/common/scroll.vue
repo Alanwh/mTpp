@@ -1,5 +1,5 @@
 <template>
-  <div class="scroll" ref="scroll" :style="styleObj">
+  <div class="scroll" ref="scroll" :style="styleObj" >
     <div class="wrapper">
       <slot />
     </div>

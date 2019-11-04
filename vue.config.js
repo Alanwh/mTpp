@@ -1,5 +1,5 @@
 const path = require('path');
-// const apiRoutes = require('./mock');
+const apiRoutes = require('./mock');
 const resolve = (dir) => path.join(__dirname, dir);
 
 module.exports = {
@@ -26,8 +26,8 @@ module.exports = {
                 }
             },
         },
-        // before(app) {
-        //     app.use('/api', apiRoutes)
-        // }
+        before(app) {
+            app.use('/api', apiRoutes)
+        }
     }
 }

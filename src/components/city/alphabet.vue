@@ -1,12 +1,27 @@
 <template>
-  <div class="alphabet">
-    <span>当前</span><span>GPS</span><span>热门</span><span>A</span><span>B</span><span>A</span><span>B</span><span>A</span><span>B</span><span>A</span><span>B</span><span>A</span><span>B</span><span>A</span><span>B</span>
+  <div class="alphabet" v-show="city.cities">
+    <span>当前</span>
+    <span>GPS</span>
+    <span>热门</span>
+    <span v-for="(value, key) in city.cities" :key="key" @click="handleClickAlphabet">{{key}}</span>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Alphabet'
+  name: 'Alphabet',
+  props: {
+    city: {
+      type: Object,
+      default: () => {}
+    }
+  },
+  methods: {
+    handleClickAlphabet (e) {
+      console.log(e.target.innerText)
+      console.log(this.scroll)
+    }
+  }
 }
 </script>
 

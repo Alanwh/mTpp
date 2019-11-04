@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div v-show="city.cities && city.hotCities">
     <CityHeader />
     <Scroll :styleObj="style">
-      <CityList />
+      <CityList :city="city"/>
     </Scroll>
-    <Alphabet />
+    <Alphabet :city="city" />
   </div>
 </template>
 
@@ -25,8 +25,22 @@ export default {
     return {
       style: {
         bottom: 0
+      },
+      city: {}
+    }
+  },
+  methods: {
+    initData () {
+      this.$http({ methods: 'GET', url: '/city' }).then(this.handleCityData)
+    },
+    handleCityData (data) {
+      if (data.ret) {
+        this.city = { ...data.data }
       }
     }
+  },
+  mounted () {
+    this.initData()
   }
 }
 </script>

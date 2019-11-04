@@ -3,7 +3,7 @@
     <div class="current">
       <div class="city-title">当前城市</div>
       <ul class="city-list">
-        <router-link to="/" tag="li">北京</router-link>
+        <li tag="li" @click="handleClick">{{nowCity}}</li>
       </ul>
     </div>
     <div class="location">
@@ -15,27 +15,23 @@
     <div class="popular">
       <div class="city-title">热门城市</div>
       <ul class="city-list">
-        <router-link to="/" tag="li" class="border-top">北京</router-link>
-        <router-link to="/" tag="li" class="border-top">北京</router-link>
-        <router-link to="/" tag="li" class="border-top">北京</router-link>
-        <router-link to="/" tag="li" class="border-top">北京</router-link>
-        <router-link to="/" tag="li" class="border-top">北京</router-link>
+        <li
+          v-for="item of city.hotCities"
+          :key="item.id"
+          tag="li"
+          class="border-top"
+          @click="handleClick">{{item.name}}</li>
       </ul>
     </div>
     <div class="all">
-      <div class="alphabeta">
-        <div class="city-title">A</div>
+      <div class="alphabeta" v-for="(value, key) in city.cities" :key="key">
+        <div class="city-title" ref="key">{{key}}</div>
         <ul class="city-list">
-          <router-link to="/" tag="li" class="border-top">北京</router-link>
-          <router-link to="/" tag="li" class="border-top">北京</router-link>
-          <router-link to="/" tag="li" class="border-top">北京</router-link>
-          <router-link to="/" tag="li" class="border-top">北京</router-link>
-          <router-link to="/" tag="li" class="border-top">北京</router-link>
-          <router-link to="/" tag="li" class="border-top">北京</router-link>
-          <router-link to="/" tag="li" class="border-top">北京</router-link>
-          <router-link to="/" tag="li" class="border-top">北京</router-link>
-          <router-link to="/" tag="li" class="border-top">北京</router-link>
-          <router-link to="/" tag="li" class="border-top">北京</router-link>
+          <li
+            v-for="(item, index) of value"
+            :key="index"
+            class="border-top"
+            @click="handleClick">{{item.name}}</li>
         </ul>
       </div>
     </div>
@@ -43,8 +39,26 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
+
 export default {
-  name: 'CityList'
+  name: 'CityList',
+  props: {
+    city: {
+      type: Object,
+      default: () => {}
+    }
+  },
+  computed: {
+    ...mapState(['nowCity'])
+  },
+  methods: {
+    handleClick (e) {
+      this.change_city(e.target.innerText)
+      this.$router.push('/')
+    },
+    ...mapMutations(['change_city'])
+  }
 }
 </script>
 

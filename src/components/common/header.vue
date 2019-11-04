@@ -2,7 +2,7 @@
   <div class="header border-bottom">
     <router-link to="/city" tag="div" class="city">
       <span class="iconfont">&#xe659;</span>
-      南京
+      {{nowCity}}
       <span class="iconfont">&#xe615;</span>
     </router-link>
     <ul class="tabs">
@@ -23,7 +23,7 @@ export default {
     ...mapMutations(['change_header_tab'])
   },
   computed: {
-    ...mapState(['header'])
+    ...mapState(['header', 'nowCity'])
   }
 }
 </script>
