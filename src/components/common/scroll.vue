@@ -1,5 +1,5 @@
 <template>
-  <div class="scroll" ref="scroll">
+  <div class="scroll" ref="scroll" :style="styleObj">
     <div class="wrapper">
       <slot />
     </div>
@@ -11,6 +11,14 @@ import BScroll from 'better-scroll'
 
 export default {
   name: 'Scroll',
+  props: {
+    styleObj: {
+      type: Object,
+      default () {
+        return {}
+      }
+    }
+  },
   methods: {
     initScroll () {
       this.scroll = new BScroll(this.$refs.scroll, {

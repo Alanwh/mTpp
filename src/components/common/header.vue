@@ -1,10 +1,10 @@
 <template>
   <div class="header border-bottom">
-    <div class="city">
+    <router-link to="/city" tag="div" class="city">
       <span class="iconfont">&#xe659;</span>
       南京
       <span class="iconfont">&#xe615;</span>
-    </div>
+    </router-link>
     <ul class="tabs">
       <li
         :class="['tab', {active: header.headerTab == index}]"
