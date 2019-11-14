@@ -9,7 +9,7 @@
       <li
         :class="['tab', {active: header.headerTab == index}]"
         v-for="(item, index) in header.headerTabs" :key="item"
-        @click="change_header_tab(index)">{{item}}</li>
+        @click="handleClick(index)">{{item}}</li>
     </ul>
   </div>
 </template>
@@ -20,6 +20,9 @@ import { mapState, mapMutations } from 'vuex'
 export default {
   name: 'Header',
   methods: {
+    handleClick (index) {
+      this.change_header_tab(index)
+    },
     ...mapMutations(['change_header_tab'])
   },
   computed: {
